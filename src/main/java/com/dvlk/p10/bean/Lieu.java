@@ -1,6 +1,4 @@
 package com.dvlk.p10.bean;
-// default package
-// Generated 10 juin 2018 12:12:24 by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
