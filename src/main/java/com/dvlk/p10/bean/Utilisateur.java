@@ -1,173 +1,221 @@
 package com.dvlk.p10.bean;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-public class Utilisateur {
+@Entity
+@Table(name = "utilisateur", catalog = "projet10")
+public class Utilisateur implements java.io.Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String nom;
 	private String prenom;
 	private Date dateNaissance;
 	private String adresse;
 	private String codePostal;
-	private String ville;
 	private String telephone;
 	private String email;
-	private float note;
-	private float penalite;
-	private int niveau;
+	private Float note;
+	private Float penalite;
+	private Integer niveau;
 	private String description;
-	private String motDePasse;
-	
+	private String password;
+	private Set<Role> roles = new HashSet<Role>(0);
+	private Set<SalonRoleUtilisateur> salonRoleUtilisateurs = new HashSet<SalonRoleUtilisateur>(0);
+	private Set<Paiement> paiements = new HashSet<Paiement>(0);
+
 	public Utilisateur() {
-		super();
 	}
 
+	public Utilisateur(int id, Date dateNaissance, String email) {
+		this.id = id;
+		this.dateNaissance = dateNaissance;
+		this.email = email;
+	}
+
+	public Utilisateur(int id, String nom, String prenom, Date dateNaissance, String adresse, String codePostal,
+			String telephone, String email, Float note, Float penalite, Integer niveau, String description,
+			String password, Set<Role> roles, Set<SalonRoleUtilisateur> salonRoleUtilisateurs,
+			Set<Paiement> paiements) {
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.dateNaissance = dateNaissance;
+		this.adresse = adresse;
+		this.codePostal = codePostal;
+		this.telephone = telephone;
+		this.email = email;
+		this.note = note;
+		this.penalite = penalite;
+		this.niveau = niveau;
+		this.description = description;
+		this.password = password;
+		this.roles = roles;
+		this.salonRoleUtilisateurs = salonRoleUtilisateurs;
+		this.paiements = paiements;
+	}
+
+	@Id
+
+	@Column(name = "id", unique = true, nullable = false)
 	public int getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	@Column(name = "nom", length = 150)
 	public String getNom() {
-		return nom;
+		return this.nom;
 	}
 
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
 
+	@Column(name = "prenom", length = 150)
 	public String getPrenom() {
-		return prenom;
+		return this.prenom;
 	}
 
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
 
+	@Temporal(TemporalType.DATE)
+	@Column(name = "date_naissance", nullable = false, length = 10)
 	public Date getDateNaissance() {
-		return dateNaissance;
+		return this.dateNaissance;
 	}
 
 	public void setDateNaissance(Date dateNaissance) {
 		this.dateNaissance = dateNaissance;
 	}
 
+	@Column(name = "adresse", length = 150)
 	public String getAdresse() {
-		return adresse;
+		return this.adresse;
 	}
 
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}
 
+	@Column(name = "code_postal", length = 150)
 	public String getCodePostal() {
-		return codePostal;
+		return this.codePostal;
 	}
 
 	public void setCodePostal(String codePostal) {
 		this.codePostal = codePostal;
 	}
 
-	public String getVille() {
-		return ville;
-	}
-
-	public void setVille(String ville) {
-		this.ville = ville;
-	}
-
+	@Column(name = "telephone", length = 150)
 	public String getTelephone() {
-		return telephone;
+		return this.telephone;
 	}
 
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
 
+	@Column(name = "email", nullable = false, length = 320)
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public float getNote() {
-		return note;
+	@Column(name = "note", precision = 12, scale = 0)
+	public Float getNote() {
+		return this.note;
 	}
 
-	public void setNote(float note) {
+	public void setNote(Float note) {
 		this.note = note;
 	}
 
-	public float getPenalite() {
-		return penalite;
+	@Column(name = "penalite", precision = 12, scale = 0)
+	public Float getPenalite() {
+		return this.penalite;
 	}
 
-	public void setPenalite(float penalite) {
+	public void setPenalite(Float penalite) {
 		this.penalite = penalite;
 	}
 
-	public int getNiveau() {
-		return niveau;
+	@Column(name = "niveau")
+	public Integer getNiveau() {
+		return this.niveau;
 	}
 
-	public void setNiveau(int niveau) {
+	public void setNiveau(Integer niveau) {
 		this.niveau = niveau;
 	}
 
+	@Column(name = "description", length = 65535)
 	public String getDescription() {
-		return description;
+		return this.description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	public String getMotDePasse() {
-		return motDePasse;
+	@Column(name = "password")
+	public String getPassword() {
+		return this.password;
 	}
 
-	public void setMotDePasse(String motDePasse) {
-		this.motDePasse = motDePasse;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Utilisateur [id=");
-		builder.append(id);
-		builder.append(", nom=");
-		builder.append(nom);
-		builder.append(", prenom=");
-		builder.append(prenom);
-		builder.append(", dateNaissance=");
-		builder.append(dateNaissance);
-		builder.append(", adresse=");
-		builder.append(adresse);
-		builder.append(", codePostal=");
-		builder.append(codePostal);
-		builder.append(", ville=");
-		builder.append(ville);
-		builder.append(", telephone=");
-		builder.append(telephone);
-		builder.append(", email=");
-		builder.append(email);
-		builder.append(", note=");
-		builder.append(note);
-		builder.append(", penalite=");
-		builder.append(penalite);
-		builder.append(", niveau=");
-		builder.append(niveau);
-		builder.append(", description=");
-		builder.append(description);
-		builder.append(", motDePasse=");
-		builder.append(motDePasse);
-		builder.append("]");
-		return builder.toString();
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "utilisateur_role", catalog = "projet10", joinColumns = {
+			@JoinColumn(name = "utilisateur_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "role_id", nullable = false, updatable = false) })
+	public Set<Role> getRoles() {
+		return this.roles;
 	}
 
-	
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "utilisateur")
+	public Set<SalonRoleUtilisateur> getSalonRoleUtilisateurs() {
+		return this.salonRoleUtilisateurs;
+	}
+
+	public void setSalonRoleUtilisateurs(Set<SalonRoleUtilisateur> salonRoleUtilisateurs) {
+		this.salonRoleUtilisateurs = salonRoleUtilisateurs;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "utilisateur")
+	public Set<Paiement> getPaiements() {
+		return this.paiements;
+	}
+
+	public void setPaiements(Set<Paiement> paiements) {
+		this.paiements = paiements;
+	}
+
 }
