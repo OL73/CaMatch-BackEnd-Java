@@ -13,6 +13,7 @@ import javax.persistence.Table;
 @Table(name = "terrain", catalog = "projet10")
 public class Terrain implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Lieu lieu;
 	private int capaciteMax;

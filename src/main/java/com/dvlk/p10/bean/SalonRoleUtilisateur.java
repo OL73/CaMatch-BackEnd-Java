@@ -1,3 +1,4 @@
+package com.dvlk.p10.bean;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -13,6 +14,7 @@ import javax.persistence.Table;
 @Table(name = "salon_role_utilisateur", catalog = "projet10")
 public class SalonRoleUtilisateur implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private SalonRoleUtilisateurId id;
 	private Salon salon;
 	private Utilisateur utilisateur;

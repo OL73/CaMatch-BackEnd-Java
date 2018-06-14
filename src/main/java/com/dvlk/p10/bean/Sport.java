@@ -1,3 +1,5 @@
+package com.dvlk.p10.bean;
+
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +16,7 @@ import javax.persistence.Table;
 @Table(name = "sport", catalog = "projet10")
 public class Sport implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String nom;
 	private String description;

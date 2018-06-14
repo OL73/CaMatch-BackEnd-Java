@@ -1,3 +1,5 @@
+package com.dvlk.p10.bean;
+
 
 import java.util.Date;
 import java.util.HashSet;
@@ -20,6 +22,7 @@ import javax.persistence.TemporalType;
 @Table(name = "utilisateur", catalog = "projet10")
 public class Utilisateur implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String nom;
 	private String prenom;

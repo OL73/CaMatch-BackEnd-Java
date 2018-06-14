@@ -1,3 +1,5 @@
+package com.dvlk.p10.bean;
+
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,6 +18,7 @@ import javax.persistence.Table;
 @Table(name = "role", catalog = "projet10")
 public class Role implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String libelle;
 	private Set<Utilisateur> utilisateurs = new HashSet<Utilisateur>(0);

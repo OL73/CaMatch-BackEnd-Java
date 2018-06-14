@@ -1,3 +1,4 @@
+package com.dvlk.p10.bean;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -5,6 +6,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class PaiementId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private int salonId;
 	private int utilisateurId;
 

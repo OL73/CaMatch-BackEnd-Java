@@ -1,3 +1,4 @@
+package com.dvlk.p10.bean;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,6 +17,7 @@ import javax.persistence.Table;
 @Table(name = "lieu", catalog = "projet10")
 public class Lieu implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Utilisateur utilisateur;
 	private String adresse;

@@ -13,6 +13,7 @@ import javax.persistence.Table;
 @Table(name = "paiement", catalog = "projet10")
 public class Paiement implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private PaiementId id;
 	private Salon salon;
 	private Utilisateur utilisateur;

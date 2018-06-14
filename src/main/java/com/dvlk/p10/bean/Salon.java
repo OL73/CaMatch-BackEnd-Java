@@ -1,3 +1,5 @@
+package com.dvlk.p10.bean;
+
 
 import java.util.Date;
 import java.util.HashSet;
@@ -19,6 +21,7 @@ import javax.persistence.TemporalType;
 @Table(name = "salon", catalog = "projet10")
 public class Salon implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Lieu lieu;
 	private Sport sport;
