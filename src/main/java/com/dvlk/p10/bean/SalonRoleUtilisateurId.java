@@ -1,6 +1,5 @@
 package com.dvlk.p10.bean;
 
-
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 

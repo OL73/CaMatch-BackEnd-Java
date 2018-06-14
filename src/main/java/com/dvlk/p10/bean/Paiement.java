@@ -1,3 +1,4 @@
+package com.dvlk.p10.bean;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;

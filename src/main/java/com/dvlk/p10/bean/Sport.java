@@ -1,6 +1,5 @@
 package com.dvlk.p10.bean;
 
-
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
