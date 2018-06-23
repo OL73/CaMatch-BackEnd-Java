@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dvlk.p10.bean.Salon;
-import com.dvlk.p10.repository.SalonRepository;
+import com.dvlk.p10.repository.ISalonRepository;
 import com.dvlk.p10.service.ISalonService;
 
 @Service
 public class SalonService implements ISalonService {
 
 	@Autowired
-	private SalonRepository salonRepository;
+	private ISalonRepository salonRepository;
 
 	@Override
 	public List<Salon> findAllSalons() {
