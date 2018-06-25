@@ -12,7 +12,7 @@ import com.dvlk.p10.bean.Sport;
 import com.dvlk.p10.service.ISportService;
 
 @RestController
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RequestMapping("/api")
 public class SportController {
 
