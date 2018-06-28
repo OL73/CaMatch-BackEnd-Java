@@ -1,13 +1,15 @@
 package com.dvlk.p10.bean;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -26,6 +28,7 @@ public class Salon implements java.io.Serializable {
 	private Sport sport;
 	private Date date;
 	private int joueurMax;
+
 	private Set<SalonRoleUtilisateur> salonRoleUtilisateurs = new HashSet<SalonRoleUtilisateur>(0);
 	private Set<Paiement> paiements = new HashSet<Paiement>(0);
 

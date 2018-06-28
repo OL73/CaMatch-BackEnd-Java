@@ -1,6 +1,8 @@
 package com.dvlk.p10.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -10,7 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dvlk.p10.bean.Salon;
+import com.dvlk.p10.bean.SalonRoleUtilisateur;
 import com.dvlk.p10.bean.Utilisateur;
+import com.dvlk.p10.dto.AccueilDTO;
+import com.dvlk.p10.dto.PageSalonDTO;
+import com.dvlk.p10.dto.SalonDTO;
+import com.dvlk.p10.dto.UtilisateurDTO;
 import com.dvlk.p10.service.ISalonService;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
@@ -21,21 +28,72 @@ public class SalonController {
 	private ISalonService service;
 
 	@GetMapping("/salons")
-	public List<Salon> getSalons() {
+	public AccueilDTO getSalons() {
 		List<Salon> lstSalons = this.service.findAllSalons();
-		return lstSalons;
+
+		List<SalonDTO> mesSalons = new ArrayList<>(lstSalons.size());
+		for (Salon salon : lstSalons) {
+			SalonDTO sdto = new SalonDTO();
+			sdto.setDate(salon.getDate());
+			Set<SalonRoleUtilisateur> users = salon.getSalonRoleUtilisateurs();
+			// TODO Trop intel pour un controleur
+			Utilisateur admin = null;
+			for (SalonRoleUtilisateur salonRoleUtilisateur : users) {
+				// TODO valider nom des roles
+				if ("admin".equals(salonRoleUtilisateur.getRole())) {
+					admin = salonRoleUtilisateur.getUtilisateur();
+					break;
+				}
+			}
+			if (admin != null) {
+				sdto.setFullNameAdminSalon(admin.getNom() + " " + admin.getPrenom());
+				sdto.setIdAdminSalon(admin.getId());
+			} else {
+				// TODO a gerer
+			}
+			sdto.setId(salon.getId());
+			sdto.setIdLieu(salon.getLieu().getId());
+			sdto.setJoueurMax(salon.getJoueurMax());
+			sdto.setLibelleLieu(salon.getLieu().getNom());
+			sdto.setNbJoueurs(users.size());
+			mesSalons.add(sdto);
+		}
+		AccueilDTO result = new AccueilDTO();
+		result.setSalons(mesSalons);
+		return result;
 	}
 
 	@GetMapping("/salon/{id}")
-	public Salon getSalon(@PathVariable("id") Integer id) {
+	public PageSalonDTO getSalon(@PathVariable("id") Integer id) {
+		PageSalonDTO pSalonDTO = new PageSalonDTO();
 		Salon salon = this.service.findSalon(id);
-		return salon;
-	}
+		SalonDTO salonDTO = new SalonDTO();
+		salonDTO.setDate(salon.getDate());
+		List<UtilisateurDTO> lstUtilisateursDTO = new ArrayList<>();
+		Set<SalonRoleUtilisateur> users = salon.getSalonRoleUtilisateurs();
+		salonDTO.setIdLieu(salon.getLieu().getId());
+		salonDTO.setJoueurMax(salon.getJoueurMax());
+		salonDTO.setLibelleLieu(salon.getLieu().getDescription());
 
-	@GetMapping("/salon/{id}/utilisateurs")
-	public List<Utilisateur> getUtilisateursFromSalon() {
-		return null;
+		for (SalonRoleUtilisateur salonRoleutilisateur : users) {
+			UtilisateurDTO utilisateurDTO = new UtilisateurDTO();
+			utilisateurDTO.setId(salonRoleutilisateur.getUtilisateur().getId());
+			utilisateurDTO.setNiveau(salonRoleutilisateur.getUtilisateur().getNiveau());
+			utilisateurDTO.setNom(salonRoleutilisateur.getUtilisateur().getNom());
+			utilisateurDTO.setNote(salonRoleutilisateur.getUtilisateur().getNote());
+			utilisateurDTO.setPenalite(salonRoleutilisateur.getUtilisateur().getPenalite());
+			utilisateurDTO.setPrenom(salonRoleutilisateur.getUtilisateur().getPrenom());
+			utilisateurDTO.setSalonRoleUtilisateurs(salon.getSalonRoleUtilisateurs());
+			if ("admin".equals(salonRoleutilisateur.getRole())) {
+				salonDTO.setFullNameAdminSalon(salonRoleutilisateur.getUtilisateur().getNom());
+			}
+			lstUtilisateursDTO.add(utilisateurDTO);
+		}
 
+		salonDTO.setNbJoueurs(lstUtilisateursDTO.size());
+		pSalonDTO.setLstutilisateurDTO(lstUtilisateursDTO);
+		pSalonDTO.setSalon(salonDTO);
+		return pSalonDTO;
 	}
 
 }
