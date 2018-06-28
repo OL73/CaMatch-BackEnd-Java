@@ -1,9 +1,9 @@
 package com.dvlk.p10.service.impl;
 
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dvlk.p10.bean.Sport;
 import com.dvlk.p10.repository.ISportRepository;
@@ -16,7 +16,8 @@ public class SportService implements ISportService{
 	private ISportRepository sportRepository;
 
 	@Override
-	@Transactional(rollbackOn = Exception.class)
+	// Attention a l'import pour @Transactional = vient du Spring !
+	@Transactional(rollbackFor = Exception.class)
 	public void saveOne(Sport sport) {
 		this.sportRepository.save(sport);
 	}
