@@ -24,28 +24,27 @@ public class Salon implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private Lieu lieu;
 	private Sport sport;
+	private Terrain terrain;
 	private Date date;
 	private int joueurMax;
-
 	private Set<SalonRoleUtilisateur> salonRoleUtilisateurs = new HashSet<SalonRoleUtilisateur>(0);
 	private Set<Paiement> paiements = new HashSet<Paiement>(0);
 
 	public Salon() {
 	}
 
-	public Salon(Lieu lieu, Sport sport, Date date, int joueurMax) {
-		this.lieu = lieu;
+	public Salon(Sport sport, Terrain terrain, Date date, int joueurMax) {
 		this.sport = sport;
+		this.terrain = terrain;
 		this.date = date;
 		this.joueurMax = joueurMax;
 	}
 
-	public Salon(Lieu lieu, Sport sport, Date date, int joueurMax, Set<SalonRoleUtilisateur> salonRoleUtilisateurs,
-			Set<Paiement> paiements) {
-		this.lieu = lieu;
+	public Salon(Sport sport, Terrain terrain, Date date, int joueurMax,
+			Set<SalonRoleUtilisateur> salonRoleUtilisateurs, Set<Paiement> paiements) {
 		this.sport = sport;
+		this.terrain = terrain;
 		this.date = date;
 		this.joueurMax = joueurMax;
 		this.salonRoleUtilisateurs = salonRoleUtilisateurs;
@@ -65,16 +64,6 @@ public class Salon implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "lieu_id", nullable = false)
-	public Lieu getLieu() {
-		return this.lieu;
-	}
-
-	public void setLieu(Lieu lieu) {
-		this.lieu = lieu;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "sport_id", nullable = false)
 	public Sport getSport() {
 		return this.sport;
@@ -82,6 +71,16 @@ public class Salon implements java.io.Serializable {
 
 	public void setSport(Sport sport) {
 		this.sport = sport;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "terrain_id", nullable = false)
+	public Terrain getTerrain() {
+		return this.terrain;
+	}
+
+	public void setTerrain(Terrain terrain) {
+		this.terrain = terrain;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)

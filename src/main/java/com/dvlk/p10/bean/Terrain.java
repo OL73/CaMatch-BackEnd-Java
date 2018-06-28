@@ -2,6 +2,9 @@ package com.dvlk.p10.bean;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,32 +12,35 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "terrain", catalog = "projet10")
 public class Terrain implements java.io.Serializable {
-
+	
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Lieu lieu;
-	private int capaciteMax;
+	private int joueurMax;
 	private String libelle;
 	private Integer prix;
+	private Set<Salon> salons = new HashSet<Salon>(0);
 
 	public Terrain() {
 	}
 
-	public Terrain(Lieu lieu, int capaciteMax) {
+	public Terrain(Lieu lieu, int joueurMax) {
 		this.lieu = lieu;
-		this.capaciteMax = capaciteMax;
+		this.joueurMax = joueurMax;
 	}
 
-	public Terrain(Lieu lieu, int capaciteMax, String libelle, Integer prix) {
+	public Terrain(Lieu lieu, int joueurMax, String libelle, Integer prix, Set<Salon> salons) {
 		this.lieu = lieu;
-		this.capaciteMax = capaciteMax;
+		this.joueurMax = joueurMax;
 		this.libelle = libelle;
 		this.prix = prix;
+		this.salons = salons;
 	}
 
 	@Id
@@ -59,13 +65,13 @@ public class Terrain implements java.io.Serializable {
 		this.lieu = lieu;
 	}
 
-	@Column(name = "capacite_max", nullable = false)
-	public int getCapaciteMax() {
-		return this.capaciteMax;
+	@Column(name = "joueurMax", nullable = false)
+	public int getJoueurMax() {
+		return this.joueurMax;
 	}
 
-	public void setCapaciteMax(int capaciteMax) {
-		this.capaciteMax = capaciteMax;
+	public void setJoueurMax(int joueurMax) {
+		this.joueurMax = joueurMax;
 	}
 
 	@Column(name = "libelle", length = 150)
@@ -84,6 +90,15 @@ public class Terrain implements java.io.Serializable {
 
 	public void setPrix(Integer prix) {
 		this.prix = prix;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "terrain")
+	public Set<Salon> getSalons() {
+		return this.salons;
+	}
+
+	public void setSalons(Set<Salon> salons) {
+		this.salons = salons;
 	}
 
 }

@@ -25,29 +25,27 @@ public class Lieu implements java.io.Serializable {
 	private String codePostal;
 	private String telephone;
 	private String description;
-	private boolean gratuit;
-	private Set<Salon> salons = new HashSet<Salon>(0);
+	private boolean publique;
 	private Set<Terrain> terrains = new HashSet<Terrain>(0);
 
 	public Lieu() {
 	}
 
-	public Lieu(Utilisateur utilisateur, String adresse, boolean gratuit) {
+	public Lieu(Utilisateur utilisateur, String adresse, boolean publique) {
 		this.utilisateur = utilisateur;
 		this.adresse = adresse;
-		this.gratuit = gratuit;
+		this.publique = publique;
 	}
 
 	public Lieu(Utilisateur utilisateur, String adresse, String nom, String codePostal, String telephone,
-			String description, boolean gratuit, Set<Salon> salons, Set<Terrain> terrains) {
+			String description, boolean publique, Set<Terrain> terrains) {
 		this.utilisateur = utilisateur;
 		this.adresse = adresse;
 		this.nom = nom;
 		this.codePostal = codePostal;
 		this.telephone = telephone;
 		this.description = description;
-		this.gratuit = gratuit;
-		this.salons = salons;
+		this.publique = publique;
 		this.terrains = terrains;
 	}
 
@@ -118,22 +116,13 @@ public class Lieu implements java.io.Serializable {
 		this.description = description;
 	}
 
-	@Column(name = "gratuit", nullable = false)
-	public boolean isGratuit() {
-		return this.gratuit;
+	@Column(name = "publique", nullable = false)
+	public boolean isPublique() {
+		return this.publique;
 	}
 
-	public void setGratuit(boolean gratuit) {
-		this.gratuit = gratuit;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lieu")
-	public Set<Salon> getSalons() {
-		return this.salons;
-	}
-
-	public void setSalons(Set<Salon> salons) {
-		this.salons = salons;
+	public void setPublique(boolean publique) {
+		this.publique = publique;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lieu")
