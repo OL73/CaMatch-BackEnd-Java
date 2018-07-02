@@ -52,9 +52,7 @@ public class SalonController {
 				// TODO a gerer
 			}
 			sdto.setId(salon.getId());
-			sdto.setIdLieu(salon.getLieu().getId());
 			sdto.setJoueurMax(salon.getJoueurMax());
-			sdto.setLibelleLieu(salon.getLieu().getNom());
 			sdto.setNbJoueurs(users.size());
 			mesSalons.add(sdto);
 		}
@@ -71,9 +69,7 @@ public class SalonController {
 		salonDTO.setDate(salon.getDate());
 		List<UtilisateurDTO> lstUtilisateursDTO = new ArrayList<>();
 		Set<SalonRoleUtilisateur> users = salon.getSalonRoleUtilisateurs();
-		salonDTO.setIdLieu(salon.getLieu().getId());
 		salonDTO.setJoueurMax(salon.getJoueurMax());
-		salonDTO.setLibelleLieu(salon.getLieu().getDescription());
 
 		for (SalonRoleUtilisateur salonRoleutilisateur : users) {
 			UtilisateurDTO utilisateurDTO = new UtilisateurDTO();
