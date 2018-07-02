@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +25,7 @@ import com.dvlk.p10.service.ISalonService;
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RequestMapping("/api")
 public class SalonController {
+	private static final Logger LOG = LogManager.getLogger();
 
 	@Autowired
 	private ISalonService service;
@@ -63,6 +66,7 @@ public class SalonController {
 
 	@GetMapping("/salon/{id}")
 	public PageSalonDTO getSalon(@PathVariable("id") Integer id) {
+		SalonController.LOG.info("Rentré dans le get SalonController");
 		PageSalonDTO pSalonDTO = new PageSalonDTO();
 		Salon salon = this.service.findSalon(id);
 		SalonDTO salonDTO = new SalonDTO();
@@ -72,17 +76,19 @@ public class SalonController {
 		salonDTO.setJoueurMax(salon.getJoueurMax());
 
 		for (SalonRoleUtilisateur salonRoleutilisateur : users) {
+			SalonController.LOG.info("Dans le controller Salon ID, INFO UTILISATEUR : {}",
+					salonRoleutilisateur.getUtilisateur());
 			UtilisateurDTO utilisateurDTO = new UtilisateurDTO();
 			utilisateurDTO.setId(salonRoleutilisateur.getUtilisateur().getId());
-			utilisateurDTO.setNiveau(salonRoleutilisateur.getUtilisateur().getNiveau());
-			utilisateurDTO.setNom(salonRoleutilisateur.getUtilisateur().getNom());
-			utilisateurDTO.setNote(salonRoleutilisateur.getUtilisateur().getNote());
-			utilisateurDTO.setPenalite(salonRoleutilisateur.getUtilisateur().getPenalite());
-			utilisateurDTO.setPrenom(salonRoleutilisateur.getUtilisateur().getPrenom());
-			utilisateurDTO.setSalonRoleUtilisateurs(salon.getSalonRoleUtilisateurs());
-			if ("admin".equals(salonRoleutilisateur.getRole())) {
-				salonDTO.setFullNameAdminSalon(salonRoleutilisateur.getUtilisateur().getNom());
-			}
+			// utilisateurDTO.setNiveau(salonRoleutilisateur.getUtilisateur().getNiveau());
+			// utilisateurDTO.setNom(salonRoleutilisateur.getUtilisateur().getNom());
+			// utilisateurDTO.setNote(salonRoleutilisateur.getUtilisateur().getNote());
+			// utilisateurDTO.setPenalite(salonRoleutilisateur.getUtilisateur().getPenalite());
+			// utilisateurDTO.setPrenom(salonRoleutilisateur.getUtilisateur().getPrenom());
+			// utilisateurDTO.setSalonRoleUtilisateurs(salon.getSalonRoleUtilisateurs());
+			// if ("admin".equals(salonRoleutilisateur.getRole())) {
+			// salonDTO.setFullNameAdminSalon(salonRoleutilisateur.getUtilisateur().getNom());
+			// }
 			lstUtilisateursDTO.add(utilisateurDTO);
 		}
 

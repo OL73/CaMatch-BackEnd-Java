@@ -29,6 +29,7 @@ public class Utilisateur implements java.io.Serializable {
 	private String prenom;
 	private Date dateNaissance;
 	private String adresse;
+	@Column(name = "codePostal")
 	private String codePostal;
 	private String telephone;
 	private String email;
@@ -230,6 +231,43 @@ public class Utilisateur implements java.io.Serializable {
 
 	public void setPaiements(Set<Paiement> paiements) {
 		this.paiements = paiements;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Utilisateur [id=");
+		builder.append(this.id);
+		builder.append(", nom=");
+		builder.append(this.nom);
+		builder.append(", prenom=");
+		builder.append(this.prenom);
+		builder.append(", dateNaissance=");
+		builder.append(this.dateNaissance);
+		builder.append(", adresse=");
+		builder.append(this.adresse);
+		builder.append(", codePostal=");
+		builder.append(this.codePostal);
+		builder.append(", telephone=");
+		builder.append(this.telephone);
+		builder.append(", email=");
+		builder.append(this.email);
+		builder.append(", note=");
+		builder.append(this.note);
+		builder.append(", penalite=");
+		builder.append(this.penalite);
+		builder.append(", niveau=");
+		builder.append(this.niveau);
+		builder.append(", description=");
+		builder.append(this.description);
+		builder.append(", password=");
+		builder.append(this.password);
+		builder.append(", roles=");
+		builder.append(this.roles);
+		builder.append(", lieus=");
+		builder.append(this.lieus);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

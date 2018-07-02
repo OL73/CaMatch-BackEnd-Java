@@ -1,12 +1,14 @@
 package com.dvlk.p10.bean;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,6 +27,7 @@ public class Lieu implements java.io.Serializable {
 	private String codePostal;
 	private String telephone;
 	private String description;
+	private String ville;
 	private boolean publique;
 	private Set<Terrain> terrains = new HashSet<Terrain>(0);
 
@@ -132,6 +135,15 @@ public class Lieu implements java.io.Serializable {
 
 	public void setTerrains(Set<Terrain> terrains) {
 		this.terrains = terrains;
+	}
+
+	@Column(name = "ville", length = 150)
+	public String getVille() {
+		return this.ville;
+	}
+
+	public void setVille(String ville) {
+		this.ville = ville;
 	}
 
 }
