@@ -80,15 +80,15 @@ public class SalonController {
 					salonRoleutilisateur.getUtilisateur());
 			UtilisateurDTO utilisateurDTO = new UtilisateurDTO();
 			utilisateurDTO.setId(salonRoleutilisateur.getUtilisateur().getId());
-			// utilisateurDTO.setNiveau(salonRoleutilisateur.getUtilisateur().getNiveau());
-			// utilisateurDTO.setNom(salonRoleutilisateur.getUtilisateur().getNom());
-			// utilisateurDTO.setNote(salonRoleutilisateur.getUtilisateur().getNote());
-			// utilisateurDTO.setPenalite(salonRoleutilisateur.getUtilisateur().getPenalite());
-			// utilisateurDTO.setPrenom(salonRoleutilisateur.getUtilisateur().getPrenom());
-			// utilisateurDTO.setSalonRoleUtilisateurs(salon.getSalonRoleUtilisateurs());
-			// if ("admin".equals(salonRoleutilisateur.getRole())) {
-			// salonDTO.setFullNameAdminSalon(salonRoleutilisateur.getUtilisateur().getNom());
-			// }
+			utilisateurDTO.setPseudo(salonRoleutilisateur.getUtilisateur().getPseudo());
+			utilisateurDTO.setNiveau(salonRoleutilisateur.getUtilisateur().getNiveau());
+			utilisateurDTO.setNom(salonRoleutilisateur.getUtilisateur().getNom());
+			utilisateurDTO.setNote(salonRoleutilisateur.getUtilisateur().getNote());
+			utilisateurDTO.setPenalite(salonRoleutilisateur.getUtilisateur().getPenalite());
+			utilisateurDTO.setPrenom(salonRoleutilisateur.getUtilisateur().getPrenom());
+			if ("admin".equals(salonRoleutilisateur.getRole())) {
+				salonDTO.setFullNameAdminSalon(salonRoleutilisateur.getUtilisateur().getNom());
+			}
 			lstUtilisateursDTO.add(utilisateurDTO);
 		}
 

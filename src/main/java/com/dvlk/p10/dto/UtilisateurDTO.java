@@ -9,6 +9,7 @@ public class UtilisateurDTO implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Integer id;
+	private String pseudo;
 	private String nom;
 	private String prenom;
 	private Float note;
@@ -75,12 +76,21 @@ public class UtilisateurDTO implements java.io.Serializable {
 		this.salonRoleUtilisateurs = salonRoleUtilisateurs;
 	}
 
+	public String getPseudo() {
+		return this.pseudo;
+	}
+
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(this.getClass().getName());
-		builder.append(" [id=");
+		builder.append("UtilisateurDTO [id=");
 		builder.append(this.id);
+		builder.append(", pseudo=");
+		builder.append(this.pseudo);
 		builder.append(", nom=");
 		builder.append(this.nom);
 		builder.append(", prenom=");
@@ -91,8 +101,6 @@ public class UtilisateurDTO implements java.io.Serializable {
 		builder.append(this.penalite);
 		builder.append(", niveau=");
 		builder.append(this.niveau);
-		builder.append(", salonRoleUtilisateurs=");
-		builder.append(this.salonRoleUtilisateurs);
 		builder.append("]");
 		return builder.toString();
 	}

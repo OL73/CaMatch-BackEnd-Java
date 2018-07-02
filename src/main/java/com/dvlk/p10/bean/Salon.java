@@ -120,4 +120,24 @@ public class Salon implements java.io.Serializable {
 		this.paiements = paiements;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Salon [id=");
+		builder.append(this.id);
+		builder.append(", sport=");
+		builder.append(this.sport);
+		builder.append(", terrain=");
+		builder.append(this.terrain);
+		builder.append(", date=");
+		builder.append(this.date);
+		builder.append(", joueurMax=");
+		builder.append(this.joueurMax);
+		builder.append(", salonRoleUtilisateurs=");
+		builder.append(this.salonRoleUtilisateurs);
+		builder.append("]");
+		return builder.toString();
+	}
+
+
 }

@@ -28,6 +28,7 @@ public class Utilisateur implements java.io.Serializable {
 	private String nom;
 	private String prenom;
 	private Date dateNaissance;
+	private String pseudo;
 	private String adresse;
 	@Column(name = "codePostal")
 	private String codePostal;
@@ -231,6 +232,15 @@ public class Utilisateur implements java.io.Serializable {
 
 	public void setPaiements(Set<Paiement> paiements) {
 		this.paiements = paiements;
+	}
+
+	@Column(name = "pseudo", length = 150, unique = true, nullable = true)
+	public String getPseudo() {
+		return this.pseudo;
+	}
+
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
 	}
 
 	@Override
