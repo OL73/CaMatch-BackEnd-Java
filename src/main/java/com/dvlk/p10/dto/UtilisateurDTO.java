@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.dvlk.p10.bean.SalonRoleUtilisateur;
+import com.dvlk.p10.bean.Utilisateur;
 
 public class UtilisateurDTO implements java.io.Serializable {
 
@@ -18,6 +19,17 @@ public class UtilisateurDTO implements java.io.Serializable {
 	private Set<SalonRoleUtilisateur> salonRoleUtilisateurs = new HashSet<SalonRoleUtilisateur>(0);
 
 	public UtilisateurDTO() {
+		super();
+	}
+
+	public UtilisateurDTO(Utilisateur utilisateur) {
+		this.setId(utilisateur.getId());
+		this.setNiveau(utilisateur.getNiveau());
+		this.setNom(utilisateur.getNom());
+		this.setNote(utilisateur.getNote());
+		this.setPenalite(utilisateur.getPenalite());
+		this.setPrenom(utilisateur.getPrenom());
+		this.setPseudo(utilisateur.getPseudo());
 	}
 
 	public Integer getId() {

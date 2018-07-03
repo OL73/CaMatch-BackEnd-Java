@@ -26,14 +26,8 @@ public class UtilisateurController {
 	public UtilisateurDTO creationUtilisateur(@RequestBody Utilisateur utilisateur) {
 		UtilisateurController.LOG.info("Dans la méthode POST UtilisateurController, PSEUDO : {} ,DATE : {}",
 				utilisateur.getPseudo(), utilisateur.getDateNaissance());
-		UtilisateurDTO utilisateurDTO = new UtilisateurDTO();
-		utilisateurDTO.setId(utilisateur.getId());
-		utilisateurDTO.setNiveau(utilisateur.getNiveau());
-		utilisateurDTO.setNom(utilisateur.getNom());
-		utilisateurDTO.setNote(utilisateur.getNote());
-		utilisateurDTO.setPenalite(utilisateur.getPenalite());
-		utilisateurDTO.setPrenom(utilisateur.getPrenom());
-		utilisateurDTO.setPseudo(utilisateur.getPseudo());
+		UtilisateurDTO utilisateurDTO = new UtilisateurDTO(utilisateur);
+
 		this.service.saveOne(utilisateur);
 		return utilisateurDTO;
 	}
