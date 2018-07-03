@@ -3,8 +3,9 @@ package com.dvlk.p10.controller;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,12 +23,16 @@ public class UtilisateurController {
 	@Autowired
 	private IUtilisateurService service;
 
-	@PostMapping("/inscription")
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+	@PutMapping("/inscription")
 	public UtilisateurDTO creationUtilisateur(@RequestBody Utilisateur utilisateur) {
 		UtilisateurController.LOG.info("Dans la méthode POST UtilisateurController, PSEUDO : {} ,DATE : {}",
 				utilisateur.getPseudo(), utilisateur.getDateNaissance());
 		UtilisateurDTO utilisateurDTO = new UtilisateurDTO(utilisateur);
-
+		utilisateurDTO.setEmail(utilisateur.getEmail());
+		utilisateurDTO.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
 		this.service.saveOne(utilisateur);
 		return utilisateurDTO;
 	}
