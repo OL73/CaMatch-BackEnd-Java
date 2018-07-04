@@ -22,9 +22,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		SpringSecurityConfiguration.LOG.debug("Chargement des regles de securisations");
-		http.authorizeRequests().antMatchers("/salons").permitAll();
-		http.authorizeRequests().antMatchers("/profil/**").access("hasRole('ROLE_UTILISATEUR')");
-		http.authorizeRequests().anyRequest().authenticated();
+		http.authorizeRequests().antMatchers("/**").permitAll();
 	}
 
 }
