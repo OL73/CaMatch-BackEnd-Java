@@ -18,6 +18,7 @@
 
     <Root level="WARN">
       <AppenderRef ref="STDOUT" />
+      <AppenderRef ref="monLog" />
     </Root>
   </Loggers>
 

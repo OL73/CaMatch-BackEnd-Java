@@ -1,17 +1,21 @@
 package com.dvlk.p10.bean;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "role", catalog = "projet10")
@@ -20,6 +24,7 @@ public class Role implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String libelle;
+	@JsonIgnore
 	private Set<Utilisateur> utilisateurs = new HashSet<Utilisateur>(0);
 
 	public Role() {
