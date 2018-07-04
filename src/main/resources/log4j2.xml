@@ -5,11 +5,15 @@
     <Appender type="Console" name="STDOUT">
       <Layout type="PatternLayout" pattern="[%d{dd/MM/yyyy HH:mm:ss}] - %5p - %90l - %m %n" />
     </Appender>
+    <File name="monLog" fileName="C:/Users/thanh/Desktop/projet10/logs/app.log">
+      <Layout type="PatternLayout" pattern="[%d{dd/MM/yyyy HH:mm:ss}] - %5p - %90l - %m %n" />
+    </File>
   </Appenders>
 
   <Loggers>
-    <Logger name="com.dvlk" level="INFO" additivity="false">
+    <Logger name="com.dvlk" level="DEBUG" additivity="false">
       <AppenderRef ref="STDOUT" />
+      <AppenderRef ref="monLog" />
     </Logger>
 
     <Root level="WARN">

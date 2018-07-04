@@ -18,4 +18,11 @@ public class UtilisateurService implements IUtilisateurService {
 	public void saveOne(Utilisateur utilisateur) {
 		this.utilisateurRepository.save(utilisateur);
 	}
+
+	@Override
+	public Utilisateur findOne(Integer id) {
+		Utilisateur user = this.utilisateurRepository.findOne(id);
+		return user;
+	}
+
 }

@@ -37,6 +37,5 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		SpringSecurityConfiguration.LOG.debug("Chargement des regles de securisations");
 		http.authorizeRequests().antMatchers("/**").permitAll();
 		http.authorizeRequests().and().csrf().disable();
-
 	}
 }

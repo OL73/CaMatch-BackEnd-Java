@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +38,13 @@ public class UtilisateurController {
 		utilisateurDTO.setEmail(utilisateur.getEmail());
 		utilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
 		this.service.saveOne(utilisateur);
+		return new ResponseEntity<Object>(utilisateurDTO, HttpStatus.ACCEPTED);
+	}
+
+	@GetMapping("/profil/{id}")
+	public ResponseEntity<Object> voirUtilisateur(@PathVariable("id") Integer id) {
+		Utilisateur user = this.service.findOne(id);
+		UtilisateurDTO utilisateurDTO = new UtilisateurDTO(user);
 		return new ResponseEntity<Object>(utilisateurDTO, HttpStatus.ACCEPTED);
 	}
 

@@ -8,4 +8,5 @@ import com.dvlk.p10.bean.Utilisateur;
 @Repository
 public interface IUtilisateurRepository extends JpaRepository<Utilisateur, Integer> {
 
+	public Utilisateur findUtilisateurByPseudo(String pseudo);
 }

@@ -3,6 +3,7 @@ package com.dvlk.p10.dto;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.dvlk.p10.bean.Role;
 import com.dvlk.p10.bean.SalonRoleUtilisateur;
 import com.dvlk.p10.bean.Utilisateur;
 
@@ -18,6 +19,7 @@ public class UtilisateurDTO implements java.io.Serializable {
 	private Float penalite;
 	private Integer niveau;
 	private String password;
+	private Set<Role> roles = new HashSet<Role>(0);
 	private Set<SalonRoleUtilisateur> salonRoleUtilisateurs = new HashSet<SalonRoleUtilisateur>(0);
 
 	public UtilisateurDTO() {
@@ -28,10 +30,12 @@ public class UtilisateurDTO implements java.io.Serializable {
 		this.setId(utilisateur.getId());
 		this.setNiveau(utilisateur.getNiveau());
 		this.setNom(utilisateur.getNom());
+		this.setPrenom(utilisateur.getPrenom());
 		this.setNote(utilisateur.getNote());
 		this.setPenalite(utilisateur.getPenalite());
-		this.setPrenom(utilisateur.getPrenom());
 		this.setPseudo(utilisateur.getPseudo());
+		this.setEmail(utilisateur.getEmail());
+		this.setRoles(utilisateur.getRoles());
 	}
 
 	public Integer getId() {
@@ -114,23 +118,39 @@ public class UtilisateurDTO implements java.io.Serializable {
 		this.email = email;
 	}
 
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("UtilisateurDTO [id=");
-		builder.append(this.id);
+		builder.append(id);
 		builder.append(", pseudo=");
-		builder.append(this.pseudo);
+		builder.append(pseudo);
 		builder.append(", nom=");
-		builder.append(this.nom);
+		builder.append(nom);
 		builder.append(", prenom=");
-		builder.append(this.prenom);
+		builder.append(prenom);
+		builder.append(", email=");
+		builder.append(email);
 		builder.append(", note=");
-		builder.append(this.note);
+		builder.append(note);
 		builder.append(", penalite=");
-		builder.append(this.penalite);
+		builder.append(penalite);
 		builder.append(", niveau=");
-		builder.append(this.niveau);
+		builder.append(niveau);
+		builder.append(", password=");
+		builder.append(password);
+		builder.append(", roles=");
+		builder.append(roles);
+		builder.append(", salonRoleUtilisateurs=");
+		builder.append(salonRoleUtilisateurs);
 		builder.append("]");
 		return builder.toString();
 	}
