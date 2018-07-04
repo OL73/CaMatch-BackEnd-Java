@@ -2,7 +2,6 @@ package com.dvlk;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -28,12 +27,4 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().anyRequest().authenticated();
 	}
 
-	@Bean
-	public JwtAuthenticationFilter jwtAuthenticationFilter() {
-		jwtAuthenticationFilter resultat = new JwtAuthenticationFilter();
-	}
-	<beans:bean id="jwtAuthenticationFilter" class="com.toptal.travelplanner.security.JwtAuthenticationFilter">  (6)
-			<beans:property name="authenticationManager" ref="authenticationManager" />
-	<beans:property name="authenticationSuccessHandler" ref="jwtAuthenticationSuccessHandler" />  (7)
-	</beans:bean>
 }
