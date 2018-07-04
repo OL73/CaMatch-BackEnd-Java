@@ -7,4 +7,7 @@ public interface IUtilisateurService {
 	public abstract void saveOne(Utilisateur utilisateur);
 
 	public abstract Utilisateur findOne(Integer id);
+
+	public abstract Utilisateur findOneByPseudo(String pseudo);
+
 }

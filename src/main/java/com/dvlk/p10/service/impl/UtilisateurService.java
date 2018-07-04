@@ -25,4 +25,10 @@ public class UtilisateurService implements IUtilisateurService {
 		return user;
 	}
 
+	@Override
+	public Utilisateur findOneByPseudo(String pseudo) {
+		Utilisateur user = this.utilisateurRepository.findUtilisateurByPseudo(pseudo);
+		return user;
+	}
+
 }
