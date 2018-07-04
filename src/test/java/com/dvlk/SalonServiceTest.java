@@ -31,7 +31,7 @@ public class SalonServiceTest {
 	}
 
 	@Test
-	public void finSalon() {
+	public void testfindSalon() {
 		Salon salon = this.service.findSalon(10);
 		Assert.assertNotNull("le salon ne doit pas être null", salon);
 		Integer intObj = new Integer(10);

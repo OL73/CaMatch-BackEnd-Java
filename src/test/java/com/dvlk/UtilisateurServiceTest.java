@@ -15,7 +15,7 @@ public class UtilisateurServiceTest extends Projet10ApplicationTests {
 	private IUtilisateurService utilisateurService;
 
 	@Test
-	public void saveOne() {
+	public void testsaveOne() {
 		Utilisateur user = new Utilisateur();
 		Date date = new Date();
 		date.setYear(1973);
@@ -32,6 +32,23 @@ public class UtilisateurServiceTest extends Projet10ApplicationTests {
 		Assert.assertEquals("le nom doit etre égal à chuck", "chuck", user.getNom());
 		Assert.assertEquals("l'adresse doit etre égale à grand place - lille", "grand place - lille",
 				user.getAdresse());
+	}
+
+	@Test
+	public void testfindOne() {
+		Utilisateur user = new Utilisateur();
+		Integer id = 1;
+		user = this.utilisateurService.findOne(id);
+		Assert.assertEquals("l id 1 doit exister", 1, user.getId().intValue());
+	}
+
+	@Test
+	public void testfindOneByPseudo() {
+		Utilisateur user = new Utilisateur();
+		String pseudo = "bgdu59";
+		user = this.utilisateurService.findOneByPseudo(pseudo);
+		Assert.assertNotNull("le peusdo ne doit pas être null", user.getPseudo());
+		Assert.assertEquals("le pseudo doit etre égal à bgdu59", "bgdu59", user.getPseudo());
 	}
 
 }
