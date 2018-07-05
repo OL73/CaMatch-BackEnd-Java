@@ -1,22 +1,15 @@
-package com.dvlk;
+package com.dvlk.p10.service;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 
+import com.dvlk.Projet10ApplicationTests;
 import com.dvlk.p10.bean.Role;
 import com.dvlk.p10.service.IRoleService;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = Projet10Application.class)
-@Rollback(true)
-@Transactional
-public class RoleServiceTest {
+
+public class RoleServiceTest extends Projet10ApplicationTests {
 
 	@Autowired
 	private IRoleService service;
