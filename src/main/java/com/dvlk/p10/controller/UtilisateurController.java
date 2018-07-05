@@ -40,7 +40,7 @@ public class UtilisateurController {
 		utilisateurDTO.setEmail(utilisateur.getEmail());
 		utilisateur.setPassword((utilisateur.getPassword()));
 		this.service.saveOne(utilisateur);
-		return new ResponseEntity<Object>(utilisateurDTO, HttpStatus.ACCEPTED);
+		return new ResponseEntity<Object>(utilisateurDTO, HttpStatus.OK);
 	}
 
 	@GetMapping("/profil/{id}")
