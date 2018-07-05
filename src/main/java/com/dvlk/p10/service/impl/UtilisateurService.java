@@ -31,4 +31,10 @@ public class UtilisateurService implements IUtilisateurService {
 		return user;
 	}
 
+	@Override
+	public Utilisateur findByPseudoAndPassword(String pseudo, String password) {
+		Utilisateur user = this.utilisateurRepository.findUtilisateurByPseudoAndPassword(pseudo, password);
+		return user;
+	}
+
 }

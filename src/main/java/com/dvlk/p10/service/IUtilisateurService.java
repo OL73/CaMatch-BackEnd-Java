@@ -10,4 +10,5 @@ public interface IUtilisateurService {
 
 	public abstract Utilisateur findOneByPseudo(String pseudo);
 
+	public abstract Utilisateur findByPseudoAndPassword(String pseudo, String password);
 }
