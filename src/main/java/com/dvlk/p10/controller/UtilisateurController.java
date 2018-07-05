@@ -1,5 +1,9 @@
 package com.dvlk.p10.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
@@ -25,7 +29,7 @@ import com.dvlk.p10.service.i.ex.UtilisateurInconnuException;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RequestMapping("/api")
-public class UtilisateurController {
+public class UtilisateurController extends AbstractController {
 	private static final Logger LOG = LogManager.getLogger();
 
 	@Autowired
@@ -51,7 +55,16 @@ public class UtilisateurController {
 	}
 
 	@PutMapping("/connexion")
-	public ResponseEntity<Object> authentification(@RequestBody AuthenticationDTO auth, HttpSession session) {
+	public ResponseEntity<Object> authentification(@RequestBody AuthenticationDTO auth, HttpSession session,
+			HttpServletResponse response) {
+		if (isAuthenticate(session)) {
+			try {
+				response.sendRedirect("/api/salons");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		Utilisateur user = null;
 		try {
 			user = this.service.findByPseudoAndPassword(auth.getPseudo(), auth.getPassword());
@@ -60,6 +73,8 @@ public class UtilisateurController {
 		} catch (MauvaisMotdepasseException e) {
 			e.printStackTrace();
 		}
+		Cookie cookie = new Cookie("pseudo", auth.getPseudo());
+		response.addCookie(cookie);
 		session.setAttribute("authentifie", user.getPseudo());
 		return new ResponseEntity<Object>(auth, HttpStatus.ACCEPTED);
 	}

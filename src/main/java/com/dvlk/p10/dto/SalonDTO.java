@@ -2,8 +2,6 @@ package com.dvlk.p10.dto;
 
 import java.util.Date;
 
-import com.dvlk.p10.bean.Sport;
-
 public class SalonDTO implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -11,7 +9,7 @@ public class SalonDTO implements java.io.Serializable {
 	private Integer idLieu;
 	private String libelleLieu;
 	private String libelleTerrain;
-	private Sport sport;
+	private String sport;
 	private String description;
 	private String adresse;
 	private Date date;
@@ -112,11 +110,11 @@ public class SalonDTO implements java.io.Serializable {
 		this.fullNameAdminSalon = fullNameAdminSalon;
 	}
 
-	public Sport getSport() {
-		return this.sport;
+	public String getSport() {
+		return sport;
 	}
 
-	public void setSport(Sport sport) {
+	public void setSport(String sport) {
 		this.sport = sport;
 	}
 
