@@ -1,6 +1,7 @@
-package com.dvlk;
+package com.dvlk.p10.service;
 
-import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,6 +9,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.dvlk.Projet10ApplicationTests;
 import com.dvlk.p10.bean.Utilisateur;
 import com.dvlk.p10.service.IUtilisateurService;
 
@@ -21,8 +23,16 @@ public class UtilisateurServiceTest extends Projet10ApplicationTests {
 	public void testsaveOne() {
 		UtilisateurServiceTest.LOG.info("Dans la methode testsaveOne");
 		Utilisateur user = new Utilisateur();
-		Date date = new Date();
-		date.setYear(1973);
+		// Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		java.util.Date date = null;
+		try {
+			date = sdf.parse("1973/12/25");
+		} catch (ParseException e) {
+			UtilisateurServiceTest.LOG.error("Erreur parsing date, ne doit pas arriver", e);
+		}
+
+		// date.setYear(1973);
 
 		user.setNom("chuck");
 		user.setPrenom("norris");

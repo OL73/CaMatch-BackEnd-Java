@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest(classes = Projet10Application.class)
 @Transactional
 @Rollback(true)
-public class Projet10ApplicationTests {
+public abstract class Projet10ApplicationTests {
 
 
 

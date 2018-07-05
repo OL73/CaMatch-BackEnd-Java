@@ -5,7 +5,7 @@
     <Appender type="Console" name="STDOUT">
       <Layout type="PatternLayout" pattern="[%d{dd/MM/yyyy HH:mm:ss}] - %5p - %90l - %m %n" />
     </Appender>
-    <File name="monLog" fileName="/logs/app.log">
+    <File name="monLog" fileName="logs/app.log">
       <Layout type="PatternLayout" pattern="[%d{dd/MM/yyyy HH:mm:ss}] - %5p - %90l - %m %n" />
     </File>
   </Appenders>
