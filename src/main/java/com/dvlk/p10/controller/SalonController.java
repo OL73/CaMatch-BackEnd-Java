@@ -81,6 +81,7 @@ public class SalonController extends AbstractController {
 		List<UtilisateurDTO> lstUtilisateursDTO = new ArrayList<>();
 		Set<SalonRoleUtilisateur> users = salon.getSalonRoleUtilisateurs();
 		salonDTO.setJoueurMax(salon.getJoueurMax());
+		salonDTO.setId(salon.getId());
 
 		for (SalonRoleUtilisateur salonRoleutilisateur : users) {
 			SalonController.LOG.info("Dans le controller Salon ID, INFO UTILISATEUR : {}",
