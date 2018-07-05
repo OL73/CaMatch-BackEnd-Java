@@ -1553,3 +1553,8 @@ Caused by: java.lang.ClassNotFoundException: JwtAuthenticationFilter
 	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:161) ~[spring-boot-devtools-1.5.13.RELEASE.jar:1.5.13.RELEASE]
 	at java.lang.ClassLoader.loadClass(ClassLoader.java:357) ~[?:1.8.0_161]
 	... 36 more
+[05/07/2018 09:07:43] -  INFO -          org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:48) - Starting Projet10Application on DESKTOP-MI1HIMB with PID 26292 (C:\Users\thanh\Desktop\projet10\target\classes started by thanh in C:\Users\thanh\Desktop\projet10) 
+[05/07/2018 09:07:43] - DEBUG -          org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:51) - Running with Spring Boot v1.5.13.RELEASE, Spring v4.3.17.RELEASE 
+[05/07/2018 09:07:43] -  INFO - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:593) - No active profile set, falling back to default profiles: default 
+[05/07/2018 09:07:46] - DEBUG -        com.dvlk.SpringSecurityConfiguration.configure(SpringSecurityConfiguration.java:24) - Chargement des regles de securisations 
+[05/07/2018 09:07:47] -  INFO -           org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:57) - Started Projet10Application in 4.326 seconds (JVM running for 5.002) 
