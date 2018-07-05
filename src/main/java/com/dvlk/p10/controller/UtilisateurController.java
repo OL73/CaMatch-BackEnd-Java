@@ -1,11 +1,14 @@
 package com.dvlk.p10.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,8 +32,6 @@ public class UtilisateurController {
 	@Autowired
 	private IUtilisateurService service;
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
 
 	@PutMapping("/inscription")
 	public ResponseEntity<Object> creationUtilisateur(@RequestBody Utilisateur utilisateur) {
@@ -38,7 +39,7 @@ public class UtilisateurController {
 				utilisateur.getPseudo(), utilisateur.getDateNaissance());
 		UtilisateurDTO utilisateurDTO = new UtilisateurDTO(utilisateur);
 		utilisateurDTO.setEmail(utilisateur.getEmail());
-		utilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
+		utilisateur.setPassword((utilisateur.getPassword()));
 		this.service.saveOne(utilisateur);
 		return new ResponseEntity<Object>(utilisateurDTO, HttpStatus.ACCEPTED);
 	}
@@ -52,7 +53,7 @@ public class UtilisateurController {
 
 	@PutMapping("/connexion")
 	public ResponseEntity<Object> authentification(@PathVariable("pseudo") String pseudo,
-			@PathVariable("password") String password) {
+			@PathVariable("password") String password, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		Utilisateur user = null;
 		try {
 			user = this.service.findByPseudoAndPassword(pseudo, password);
@@ -61,6 +62,7 @@ public class UtilisateurController {
 		} catch (MauvaisMotdepasseException e) {
 			e.printStackTrace();
 		}
+		session.setAttribute("pseudo", user.getPseudo());
 		return new ResponseEntity<Object>(user, HttpStatus.ACCEPTED);
 	}
 
