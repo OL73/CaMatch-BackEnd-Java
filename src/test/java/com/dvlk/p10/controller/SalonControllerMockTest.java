@@ -22,6 +22,8 @@ public class SalonControllerMockTest extends Projet10ApplicationTests {
 
 	private static final String SALONS_URL = "/api/salons";
 
+	private static final String SALONID_URL = "/api/salon";
+
 	@Autowired
 	private WebApplicationContext webApplicationContext;
 
@@ -64,6 +66,18 @@ public class SalonControllerMockTest extends Projet10ApplicationTests {
 		result.andExpect(MockMvcResultMatchers.jsonPath("$.salons").exists());
 		// Dans le flux, je prends la premiere case et je regarde si son id = 1
 		result.andExpect(MockMvcResultMatchers.jsonPath("$.salons[0].id").value(Integer.valueOf(1)));
+	}
+
+	@Test
+	public void testGetSalonsOk2() throws Exception {
+		SalonControllerMockTest.LOG.trace("DANS LE TEST - testgetSalonOk 2");
+
+		ResultActions result = this.mockMvc
+				.perform(MockMvcRequestBuilders.get(SalonControllerMockTest.SALONID_URL + "/1"));
+		result.andExpect(MockMvcResultMatchers.status().isOk());
+		SalonControllerMockTest.LOG.debug("Flux {}", result.andReturn().getResponse().getContentAsString());
+		result.andExpect(MockMvcResultMatchers.jsonPath("$.lstutilisateurDTO").exists());
+		result.andExpect(MockMvcResultMatchers.jsonPath("$.lstutilisateurDTO[0].id").value(Integer.valueOf(30)));
 	}
 
 }
