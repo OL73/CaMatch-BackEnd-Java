@@ -38,7 +38,10 @@ public class SalonController {
 		List<SalonDTO> mesSalons = new ArrayList<>(lstSalons.size());
 		for (Salon salon : lstSalons) {
 			SalonDTO sdto = new SalonDTO();
+			sdto.setIdLieu(salon.getTerrain().getLieu().getId());
+			sdto.setLibelleLieu(salon.getTerrain().getLieu().getNom());
 			sdto.setDate(salon.getDate());
+			sdto.setPrix(salon.getTerrain().getPrix());
 			Set<SalonRoleUtilisateur> users = salon.getSalonRoleUtilisateurs();
 			// TODO Trop intel pour un controleur
 			Utilisateur admin = null;
@@ -58,6 +61,8 @@ public class SalonController {
 			sdto.setId(salon.getId());
 			sdto.setJoueurMax(salon.getJoueurMax());
 			sdto.setNbJoueurs(users.size());
+			sdto.setDescription(salon.getDescription());
+			sdto.setSport(salon.getSport());
 			mesSalons.add(sdto);
 		}
 		AccueilDTO result = new AccueilDTO();

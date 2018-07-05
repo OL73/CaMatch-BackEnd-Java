@@ -2,6 +2,7 @@ package com.dvlk.p10.dto;
 
 import java.util.Date;
 
+import com.dvlk.p10.bean.Sport;
 
 public class SalonDTO implements java.io.Serializable {
 
@@ -9,19 +10,16 @@ public class SalonDTO implements java.io.Serializable {
 	private Integer id;
 	private Integer idLieu;
 	private String libelleLieu;
-
-	// private Sport sport;
-	// TODO Format de la date a gerer
+	private String libelleTerrain;
+	private Sport sport;
+	private String description;
+	private String adresse;
 	private Date date;
 	private int joueurMax;
 	private Integer nbJoueurs;
-
 	private Integer idAdminSalon;
 	private String fullNameAdminSalon;
-
-	// private Set<SalonRoleUtilisateur> salonRoleUtilisateurs = new
-	// HashSet<SalonRoleUtilisateur>(0);
-	// private Set<Paiement> paiements = new HashSet<Paiement>(0);
+	private Integer prix;
 
 	public SalonDTO() {
 	}
@@ -50,8 +48,32 @@ public class SalonDTO implements java.io.Serializable {
 		this.libelleLieu = libelleLieu;
 	}
 
+	public String getLibelleTerrain() {
+		return this.libelleTerrain;
+	}
+
+	public void setLibelleTerrain(String libelleTerrain) {
+		this.libelleTerrain = libelleTerrain;
+	}
+
+	public Integer getPrix() {
+		return this.prix;
+	}
+
+	public void setPrix(Integer prix) {
+		this.prix = prix;
+	}
+
 	public Date getDate() {
 		return this.date;
+	}
+
+	public String getAdresse() {
+		return this.adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
 	}
 
 	public void setDate(Date date) {
@@ -90,28 +112,21 @@ public class SalonDTO implements java.io.Serializable {
 		this.fullNameAdminSalon = fullNameAdminSalon;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append(this.getClass().getName());
-		builder.append(" [id=");
-		builder.append(this.id);
-		builder.append(", idLieu=");
-		builder.append(this.idLieu);
-		builder.append(", libelleLieu=");
-		builder.append(this.libelleLieu);
-		builder.append(", date=");
-		builder.append(this.date);
-		builder.append(", joueurMax=");
-		builder.append(this.joueurMax);
-		builder.append(", nbJoueurs=");
-		builder.append(this.nbJoueurs);
-		builder.append(", idAdminSalon=");
-		builder.append(this.idAdminSalon);
-		builder.append(", fullNameAdminSalon=");
-		builder.append(this.fullNameAdminSalon);
-		builder.append("]");
-		return builder.toString();
+	public Sport getSport() {
+		return this.sport;
 	}
+
+	public void setSport(Sport sport) {
+		this.sport = sport;
+	}
+
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 
 }
