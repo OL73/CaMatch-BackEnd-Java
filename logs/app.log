@@ -1588,3 +1588,8 @@ Caused by: java.lang.ClassNotFoundException: JwtAuthenticationFilter
 [05/07/2018 09:19:34] -  INFO - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:593) - No active profile set, falling back to default profiles: default 
 [05/07/2018 09:19:35] - DEBUG -        com.dvlk.SpringSecurityConfiguration.configure(SpringSecurityConfiguration.java:24) - Chargement des regles de securisations 
 [05/07/2018 09:19:35] -  INFO -           org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:57) - Started Projet10Application in 1.186 seconds (JVM running for 712.796) 
+[05/07/2018 09:39:10] -  INFO -          org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:48) - Starting Projet10Application on DESKTOP-MI1HIMB with PID 26292 (C:\Users\thanh\Desktop\projet10\target\classes started by thanh in C:\Users\thanh\Desktop\projet10) 
+[05/07/2018 09:39:10] - DEBUG -          org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:51) - Running with Spring Boot v1.5.13.RELEASE, Spring v4.3.17.RELEASE 
+[05/07/2018 09:39:10] -  INFO - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:593) - No active profile set, falling back to default profiles: default 
+[05/07/2018 09:39:10] - DEBUG -        com.dvlk.SpringSecurityConfiguration.configure(SpringSecurityConfiguration.java:24) - Chargement des regles de securisations 
+[05/07/2018 09:39:11] -  INFO -           org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:57) - Started Projet10Application in 1.203 seconds (JVM running for 1888.36) 
