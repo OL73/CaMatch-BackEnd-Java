@@ -13,7 +13,7 @@ import com.dvlk.p10.service.IRoleService;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RequestMapping("/api")
-public class RoleController {
+public class RoleController extends AbstractController {
 	@Autowired
 	private IRoleService service;
 

@@ -47,7 +47,6 @@ public class SecurityFilter implements Filter {
 		if (request instanceof HttpServletRequest) {
 			HttpSession session = ((HttpServletRequest) request).getSession();
 			if (session.getAttribute("authentifie") == null || "".equals(session.getAttribute("authentifie"))) {
-				session.setAttribute("non", "non");
 				((HttpServletResponse) response).sendRedirect("/api/salons");
 				return;
 			}

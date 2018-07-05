@@ -14,7 +14,7 @@ import com.dvlk.p10.service.ISportService;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RequestMapping("/api")
-public class SportController {
+public class SportController extends AbstractController {
 
 	@Autowired
 	private ISportService service;

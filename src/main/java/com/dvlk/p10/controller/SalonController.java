@@ -21,10 +21,11 @@ import com.dvlk.p10.dto.PageSalonDTO;
 import com.dvlk.p10.dto.SalonDTO;
 import com.dvlk.p10.dto.UtilisateurDTO;
 import com.dvlk.p10.service.ISalonService;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RequestMapping("/api")
-public class SalonController {
+public class SalonController extends AbstractController {
 	private static final Logger LOG = LogManager.getLogger();
 
 	@Autowired
@@ -62,7 +63,7 @@ public class SalonController {
 			sdto.setJoueurMax(salon.getJoueurMax());
 			sdto.setNbJoueurs(users.size());
 			sdto.setDescription(salon.getDescription());
-			sdto.setSport(salon.getSport());
+			sdto.setSport(salon.getSport().getNom());
 			mesSalons.add(sdto);
 		}
 		AccueilDTO result = new AccueilDTO();
@@ -80,6 +81,7 @@ public class SalonController {
 		List<UtilisateurDTO> lstUtilisateursDTO = new ArrayList<>();
 		Set<SalonRoleUtilisateur> users = salon.getSalonRoleUtilisateurs();
 		salonDTO.setJoueurMax(salon.getJoueurMax());
+		salonDTO.setId(salon.getId());
 
 		for (SalonRoleUtilisateur salonRoleutilisateur : users) {
 			SalonController.LOG.info("Dans le controller Salon ID, INFO UTILISATEUR : {}",
