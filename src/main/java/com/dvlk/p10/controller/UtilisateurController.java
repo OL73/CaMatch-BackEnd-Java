@@ -1,7 +1,5 @@
 package com.dvlk.p10.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dvlk.p10.bean.Utilisateur;
+import com.dvlk.p10.dto.AuthenticationDTO;
 import com.dvlk.p10.dto.UtilisateurDTO;
 import com.dvlk.p10.service.IUtilisateurService;
 import com.dvlk.p10.service.i.ex.MauvaisMotdepasseException;
@@ -52,18 +51,17 @@ public class UtilisateurController {
 	}
 
 	@PutMapping("/connexion")
-	public ResponseEntity<Object> authentification(@PathVariable("pseudo") String pseudo,
-			@PathVariable("password") String password, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+	public ResponseEntity<Object> authentification(@RequestBody AuthenticationDTO auth, HttpSession session) {
 		Utilisateur user = null;
 		try {
-			user = this.service.findByPseudoAndPassword(pseudo, password);
+			user = this.service.findByPseudoAndPassword(auth.getPseudo(), auth.getPassword());
 		} catch (UtilisateurInconnuException e) {
 			e.printStackTrace();
 		} catch (MauvaisMotdepasseException e) {
 			e.printStackTrace();
 		}
-		session.setAttribute("pseudo", user.getPseudo());
-		return new ResponseEntity<Object>(user, HttpStatus.ACCEPTED);
+		session.setAttribute("authentifie", user.getPseudo());
+		return new ResponseEntity<Object>(auth, HttpStatus.ACCEPTED);
 	}
 
 }

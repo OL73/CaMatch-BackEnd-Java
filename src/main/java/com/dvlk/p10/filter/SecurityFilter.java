@@ -9,6 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,7 +45,12 @@ public class SecurityFilter implements Filter {
 		SecurityFilter.LOG.debug("Passage dans le filtre de securite");
 		// On passe a la suite
 		if (request instanceof HttpServletRequest) {
-			((HttpServletRequest) request).getSession();
+			HttpSession session = ((HttpServletRequest) request).getSession();
+			if (session.getAttribute("authentifie") == null || "".equals(session.getAttribute("authentifie"))) {
+				session.setAttribute("non", "non");
+				((HttpServletResponse) response).sendRedirect("/api/salons");
+				return;
+			}
 		}
 		filterChain.doFilter(request, response);
 	}

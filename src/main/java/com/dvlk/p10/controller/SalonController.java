@@ -32,6 +32,7 @@ public class SalonController {
 
 	@GetMapping("/salons")
 	public AccueilDTO getSalons() {
+
 		List<Salon> lstSalons = this.service.findAllSalons();
 
 		List<SalonDTO> mesSalons = new ArrayList<>(lstSalons.size());

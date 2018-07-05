@@ -33,7 +33,8 @@ public class Projet10Application extends SpringBootServletInitializer {
 	public FilterRegistrationBean someFilterRegistration() {
 		FilterRegistrationBean registration = new FilterRegistrationBean();
 		registration.setFilter(securityFilter());
-		registration.addUrlPatterns("/api/salons");
+		registration.addUrlPatterns("/api/profil/*");
+		registration.setOrder(1);
 		return registration;
 	}
 
