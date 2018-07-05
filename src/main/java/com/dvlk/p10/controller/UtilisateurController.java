@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dvlk.p10.bean.Utilisateur;
 import com.dvlk.p10.dto.AuthenticationDTO;
+import com.dvlk.p10.dto.ErreurDTO;
 import com.dvlk.p10.dto.UtilisateurDTO;
 import com.dvlk.p10.service.IUtilisateurService;
 import com.dvlk.p10.service.i.ex.MauvaisMotdepasseException;
@@ -48,10 +49,13 @@ public class UtilisateurController extends AbstractController {
 	}
 
 	@GetMapping("/profil/{id}")
-	public ResponseEntity<Object> voirUtilisateur(@PathVariable("id") Integer id) {
+	public ResponseEntity<Object> voirUtilisateur(@PathVariable("id") Integer id, HttpSession session) {
 		Utilisateur user = this.service.findOne(id);
+		if(user.getPseudo().equals(session.getAttribute("pseudo"))) {
+			return new ResponseEntity<Object>(new ErreurDTO("Page non autorisée"), HttpStatus.ACCEPTED);
+		}
 		UtilisateurDTO utilisateurDTO = new UtilisateurDTO(user);
-		return new ResponseEntity<Object>(utilisateurDTO, HttpStatus.ACCEPTED);
+		return new ResponseEntity<Object>(utilisateurDTO, HttpStatus.OK);
 	}
 
 	@PutMapping("/connexion")
