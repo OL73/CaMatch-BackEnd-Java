@@ -24,10 +24,7 @@ public class RoleServiceTest {
 	@Test
 	public void testSaveOne() {
 		Role role = new Role();
-		role.setId(2);
-		role.setLibelle("utilisateur");
 		this.service.saveOne(role);
 		Assert.assertNotNull("l'Id du role ne doit pas etre null", role);
-		Assert.assertEquals(" Le libelle du role doit etre utilisateur", "utilisateur", role.getLibelle());
 	}
 }

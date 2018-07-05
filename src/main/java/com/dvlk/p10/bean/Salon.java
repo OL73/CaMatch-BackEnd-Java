@@ -28,6 +28,7 @@ public class Salon implements java.io.Serializable {
 	private Terrain terrain;
 	private Date date;
 	private int joueurMax;
+	private String description;
 	private Set<SalonRoleUtilisateur> salonRoleUtilisateurs = new HashSet<SalonRoleUtilisateur>(0);
 	private Set<Paiement> paiements = new HashSet<Paiement>(0);
 
@@ -120,6 +121,15 @@ public class Salon implements java.io.Serializable {
 		this.paiements = paiements;
 	}
 
+	@Column(name = "description", nullable = false)
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -133,11 +143,14 @@ public class Salon implements java.io.Serializable {
 		builder.append(this.date);
 		builder.append(", joueurMax=");
 		builder.append(this.joueurMax);
+		builder.append(", description=");
+		builder.append(this.description);
 		builder.append(", salonRoleUtilisateurs=");
 		builder.append(this.salonRoleUtilisateurs);
+		builder.append(", paiements=");
+		builder.append(this.paiements);
 		builder.append("]");
 		return builder.toString();
 	}
-
 
 }
