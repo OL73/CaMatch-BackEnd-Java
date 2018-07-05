@@ -9,4 +9,6 @@ import com.dvlk.p10.bean.Utilisateur;
 public interface IUtilisateurRepository extends JpaRepository<Utilisateur, Integer> {
 
 	public Utilisateur findUtilisateurByPseudo(String pseudo);
+
+	public Utilisateur findUtilisateurByPseudoAndPassword(String pseudo, String password);
 }

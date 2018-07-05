@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dvlk.p10.bean.Utilisateur;
 import com.dvlk.p10.dto.UtilisateurDTO;
 import com.dvlk.p10.service.IUtilisateurService;
+import com.dvlk.p10.service.i.ex.MauvaisMotdepasseException;
+import com.dvlk.p10.service.i.ex.UtilisateurInconnuException;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
@@ -46,6 +48,20 @@ public class UtilisateurController {
 		Utilisateur user = this.service.findOne(id);
 		UtilisateurDTO utilisateurDTO = new UtilisateurDTO(user);
 		return new ResponseEntity<Object>(utilisateurDTO, HttpStatus.ACCEPTED);
+	}
+
+	@PutMapping("/connexion")
+	public ResponseEntity<Object> authentification(@PathVariable("pseudo") String pseudo,
+			@PathVariable("password") String password) {
+		Utilisateur user = null;
+		try {
+			user = this.service.findByPseudoAndPassword(pseudo, password);
+		} catch (UtilisateurInconnuException e) {
+			e.printStackTrace();
+		} catch (MauvaisMotdepasseException e) {
+			e.printStackTrace();
+		}
+		return new ResponseEntity<Object>(user, HttpStatus.ACCEPTED);
 	}
 
 }
