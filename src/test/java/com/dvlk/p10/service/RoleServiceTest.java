@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.dvlk.Projet10ApplicationTests;
 import com.dvlk.p10.bean.Role;
-import com.dvlk.p10.service.IRoleService;
 
 
 public class RoleServiceTest extends Projet10ApplicationTests {
@@ -17,6 +16,7 @@ public class RoleServiceTest extends Projet10ApplicationTests {
 	@Test
 	public void testSaveOne() {
 		Role role = new Role();
+		role.setLibelle("admin");
 		this.service.saveOne(role);
 		Assert.assertNotNull("l'Id du role ne doit pas etre null", role);
 	}

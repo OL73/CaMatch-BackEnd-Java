@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.dvlk.Projet10ApplicationTests;
 import com.dvlk.p10.bean.Utilisateur;
-import com.dvlk.p10.service.IUtilisateurService;
 
 public class UtilisateurServiceTest extends Projet10ApplicationTests {
 	private static final Logger LOG = LogManager.getLogger();
@@ -61,10 +60,10 @@ public class UtilisateurServiceTest extends Projet10ApplicationTests {
 	public void testfindOneByPseudo() {
 		UtilisateurServiceTest.LOG.info("Dans la methode testfindOneByPseudo");
 		Utilisateur user = new Utilisateur();
-		String pseudo = "bgdu59";
+		String pseudo = "-50";
 		user = this.utilisateurService.findOneByPseudo(pseudo);
 		Assert.assertNotNull("le peusdo ne doit pas être null", user.getPseudo());
-		Assert.assertEquals("le pseudo doit etre égal à bgdu59", "bgdu59", user.getPseudo());
+		Assert.assertEquals("le pseudo doit etre égal à bgdu59", "-50", user.getPseudo());
 	}
 
 }
